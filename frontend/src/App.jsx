@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>  
-      <div className="text-green-300">Hello from react and tailwind</div>
+      <div className="text-green-300">Hi</div>
     </>
   )
 }
