@@ -25,4 +25,4 @@ class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response({'message': 'This is a protected API endpoint'}, status=status.HTTP_200_OK)
+        return Response({'message': 'This is a protected API endpoint ' + str(request.user)}, status=status.HTTP_200_OK)
