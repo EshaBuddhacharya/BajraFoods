@@ -10,7 +10,7 @@ class FoodModelAdmin(admin.ModelAdmin):
     
 @admin.register(customer)
 class CustomerModelAdmin(admin.ModelAdmin): 
-    list_display = ('name', 'phoneNumber', 'email', 'address')
+    list_display = ('user', 'name', 'phoneNumber', 'address')
     search_fields = ('name','email', 'phoneNumber')
     
 @admin.register(order)
