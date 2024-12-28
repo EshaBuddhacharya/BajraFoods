@@ -1,25 +1,22 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+# Create your models here.
+class customer(models.Model): 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    phoneNumber = models.IntegerField()
+    address = models.CharField(max_length=30)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 # Create your models here.
 class food(models.Model): 
     name = models.CharField(max_length=30, unique=True)
     price = models.PositiveIntegerField()
-    discription = models.CharField(max_length=500)
+    discription = models.CharField(max_length=500, blank=True, null=True)
     availability = models.BooleanField(default=True)
     image = models.ImageField(upload_to='foodImg/')
-    
-    def __str__(self): 
-        return self.name
-    
-class customer(models.Model): 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
-    phoneNumber = models.PositiveIntegerField(unique = True)
-    email = models.EmailField(max_length=254, unique=True)
-    address = models.CharField(max_length=30)
-    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self): 
         return self.name
@@ -35,7 +32,7 @@ class order(models.Model):
     ]
 
     customer = models.ForeignKey(customer, on_delete=models.CASCADE)
-    discription = models.CharField(max_length=500, blank=True)
+    discription = models.CharField(max_length=500, blank=True, null=True)
     orderStatus = models.CharField(choices=ORDER_STATUS_CHOICES, default = 'PENDING', max_length=30)
     orderDate = models.DateTimeField(auto_now_add=True)
     

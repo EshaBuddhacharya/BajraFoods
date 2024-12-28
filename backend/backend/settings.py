@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-g5fbv8=($+%1f%*53%s_zvbska_fvdg5x32uir#((o&yrmmcu6"
+SECRET_KEY = "django-insecure-^xrw+39id!+lzxejg&s&nz9qc)q0x)h3*tt09491&0hu#e0grc"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   
-    # dev installed apps  
+    
     'api',
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -127,12 +126,8 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_URL = '/media/'  # URL to access media files in development
-MEDIA_ROOT = BASE_DIR / 'media/'  # Directory where files are stored
-
-# Rest Framework settings for jwt 
+# simple_jwt settings
 from datetime import timedelta
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -143,7 +138,8 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': 'thisismysecretekey',  # Replace with actual secret key
 }
 
+# settings meda path for image field
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
