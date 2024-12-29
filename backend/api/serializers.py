@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from .models import customer, food
-from rest_framework.serializers import ModelSerializer
+from .models import *
+from rest_framework.serializers import ModelSerializer, Serializer
 
 
 class UserSerializer(ModelSerializer): 
