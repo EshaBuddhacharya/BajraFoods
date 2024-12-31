@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from .models import *
-from rest_framework.serializers import ModelSerializer, Serializer
+from rest_framework.serializers import ModelSerializer
 
 
 class UserSerializer(ModelSerializer): 
@@ -17,10 +17,7 @@ class CustomerSerializer(ModelSerializer):
         
     def create(self, validated_data):
         userData = validated_data.pop('user')
-        
-        # Debugging 
-        print(userData)
-        
+               
         # creating user object first for one to one relation
         userObject = User.objects.create_user(**userData)
         
@@ -33,3 +30,16 @@ class foodSerializer(ModelSerializer):
     class Meta: 
         model = food
         fields = '__all__'
+
+
+class orderFoodSerializer(ModelSerializer): 
+    class Meta: 
+        model = orderFood
+        fields = ('food', 'quantity',)
+        
+class orderSerializer(ModelSerializer): 
+    order_foods = orderFoodSerializer(many=True)
+    
+    class Meta: 
+        model = order
+        fields = ('orderStatus', 'orderDate', 'order_foods')
